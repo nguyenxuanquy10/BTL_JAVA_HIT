@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+</head>
+<style>
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: 0 auto;
+    }
+    
+    .invalid {
+        color: red;
+    }
+</style>
+
+<body>
+    <form action="" class="form-1">
+        <div class="form-group">
+            <label for="email" class="form-label">first name</label>
+            <input type="text" name="name" id="fullname">
+            <span class="form-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="" class="form-label">email</label>
+            <input type="text" id="email" name="email">
+            <span class="form-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="" class="form-label">password</label>
+            <input type="password" id="password" name="password1">
+            <span class="form-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="" class="form-label">password confirm</label>
+            <input type="password" id="password-confirm" name="password-confirm1">
+            <span class="form-message"></span>
+        </div>
+        <button id="button1" style="background-color: blanchedalmond; color: black;">
+            Submit 
+        </button>
+    </form>
+    <script src="learn.js"></script>
+    <script>
+        Validator({
+            form: 'form-1',
+            rules: [
+                Validator.isRequired('#fullname', 'vui long nhap111 ten day du'),
+                Validator.isEmail('#email'),
+                Validator.minLength('#password'),
+                Validator.isRequired('#password-confirm'),
+                Validator.confirm('#password-confirm', function() {
+                    return document.querySelector('.form-1 #password').value;
+                }),
+                Validator.submit('#button1')
+            ],
+            onSubmit: function(data) {
+                console.log(data);
+            }
+        });
+    </script>
+</body>
+
+</html>
